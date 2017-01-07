@@ -52,6 +52,14 @@ class SigninForm(forms.ModelForm):
 		}
 
 class SupportForm(forms.ModelForm):
+	email = forms.EmailField(
+			label = 'Email Address',
+			widget = forms.TextInput({
+				'class': 'form-control',
+				'placeholder': 'Email',
+				'name': 'email',
+			}),
+		)
 	location = forms.CharField(
 			label = 'Location',
 			widget = forms.TextInput(attrs={
@@ -74,14 +82,6 @@ class SupportForm(forms.ModelForm):
 				'class': 'form-control',
 				'placeholder': 'Full description',
 				'name': 'full_description',
-			}),
-		)
-	email = forms.EmailField(
-			label = 'Email Address',
-			widget = forms.TextInput({
-				'class': 'form-control',
-				'placeholder': 'Email',
-				'name': 'email',
 			}),
 		)
 
