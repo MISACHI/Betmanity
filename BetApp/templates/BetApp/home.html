@@ -1,0 +1,223 @@
+{% extends 'BetApp/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body_block %}
+<div class="container margin-top-50 margin-bottom">
+<div class="carousel slide carousel-fade" id="screenshot-carousel" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li data-target="#screenshot-carousel" data-slide-to="0" class="active"></li>
+		<li data-target="#screenshot-carousel" data-slide-to="1"></li>
+		<li data-target="#screenshot-carousel" data-slide-to="2"></li>
+		<li data-target="#screenshot-carousel" data-slide-to="3"></li>
+		<li data-target="#screenshot-carousel" data-slide-to="4"></li>
+		<li data-target="#screenshot-carousel" data-slide-to="5"></li>
+		<li data-target="#screenshot-carousel" data-slide-to="6"></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="item active">
+			<img alt="We are the Thunder" class="slide1">
+		</div>
+		<div class="item">
+			<img  alt="Loud City" class="slide2">
+		</div>
+		<div class="item">
+			<img alt="Scream out loud" class="slide3">
+		</div>
+		<div class="item">
+			<img alt="Roar like Thunder" class="slide4">	
+		</div>
+		<div class="item">
+			<img alt="Its loud in OKC" class="slide5">
+		</div>
+		<div class="item">
+			<img alt="This is the Thunder" class="slide6">
+		</div>
+		<div class="item">
+			<img alt="In Thunder we Trust" class="slide7">
+		</div>
+	</div>
+	<div class="container text-left carousel-overlay">
+	<div class="col-md-8">
+		<div class="">
+			<div class="page-header">
+				<p class="h1 make-class-bold">Welcome to BetManity</p>
+			</div>
+			<p class="h3 make-class-bold">Make instant returns with less effort</p>
+			<p class="make-class-bold">This is the official site of BetManity,where every decision counts.</p>
+		</div>
+		<div class="btn-group">
+			<button class="btn btn-info"><span class="glyphicon glyphicon-bell"> Learn More</span></button>
+			<button class="btn btn-danger">Invite a friend &raquo;</button>
+		</div>
+	</div>
+	</div>
+	<a href="#screenshot-carousel" class="left carousel-control" data-slide="prev">
+	<span class="glyphicon glyphicon-chevron-left"></span></a>
+	<a href="#screenshot-carousel" class="right carousel-control" data-slide="next">
+	<span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+</div>
+
+<div class="container">
+	<div class="page-header">
+		<p class="h2">Place bet here.<small>Sign up or sign in.</small></p>
+	</div>
+	<div class="row">
+		<div class="col-md-12" id="align-center">
+			<!-- <div class="spin">
+				<button class="active box btn btn-default" id="spin">Single bets</button>
+				<button class="box btn btn-default" id="spin">Multi bets</button>
+				<button class="box btn btn-default" id="spin">Deposit</button>
+			</div> -->
+			<ul class="nav nav-tabs">
+				<li><a href="#singlebet" data-toggle="tab" class="tab">Single bets</a></li>
+				<li><a href="#multibet" data-toggle="tab" class="tab">Multi bets</a></li>
+				<li><a href="#deposit" data-toggle="tab" class="tab">Deposit</a></li>
+			</ul>
+		</div>
+		<!-- <div class="col-md-6 text-right" id="remove-align-right">
+			<button class="btn btn-default btn-md btn-green" data-toggle="modal" data-target="#modal-class">Log In</button>
+			<a href="{% url 'bet_register' %}"><button class="btn btn-default btn-md btn-green">Register</button></a>
+		</div> -->
+	</div>
+</div><br>
+<div class="container">
+	<div class="tab-content">
+		<div class="row">
+			<div class="tab-pane fade active in" id="singlebet">
+				{% for team in teams %}
+					{% if choices.first %}
+					<div class="col-md-4" id="push">
+						<div class="">
+							<div class="row-margin-bottom">
+								<form class="form-inline" id="form-ajax" method="POST" action="{% url 'bet_index' %}">
+									{% csrf_token %}
+									<input type="submit"  class="btn btn-default btn-md size-small" id="btn-default" name="teams" value="{% if team %}{{ team.Ateams }} {{ team.A_odds }}{% endif %}" />
+									<input type="submit" class="btn btn-default btn-md" id="btn-default" name="teams" value="{% if team %}{{ team.Draws }} {{ team.Draw }}{% endif %}" />
+									<input type="submit" class="btn btn-default btn-md size-small" name="teams" value="{% if team %}{{ team.Bteams }} {{ team.B_odds }}{% endif %}" id="btn-default" />
+								</form>
+							</div>
+						</div>
+					</div>
+					{% elif choices.second %}
+					<div class="col-md-4" id="push">
+						<div class="">
+							<div class="row-margin-bottom">
+								<form class="form-inline" id="form-ajax" method="POST" action="{% url 'bet_homepage' %}">
+									{% csrf_token %}
+									<input type="submit"  class="btn btn-default btn-md size-small" id="btn-default" name="teams" value="{% if team %}{{ team.Ateams }} {{ team.A_odds }}{% endif %}" />
+									<input type="submit" class="btn btn-default btn-md" id="btn-default" name="teams" value="{% if team %}{{ team.Draws }} {{ team.Draw }}{% endif %}" />
+									<input type="submit" class="btn btn-default btn-md size-small" name="teams" value="{% if team %}{{ team.Bteams }} {{ team.B_odds }}{% endif %}" id="btn-default" />
+								</form>
+							</div>
+						</div>
+					</div>
+					{% elif choices.third %}
+					<div class="col-md-4" id="push">
+						<div class="">
+							<div class="row-margin-bottom">
+								<form class="form-inline" id="form-ajax" method="POST" action="{% url 'bet_homepage' %}">
+									{% csrf_token %}
+									<input type="submit"  class="btn btn-default btn-md size-small" id="btn-default" name="teams" value="{% if team %}{{ team.Ateams }} {{ team.A_odds }}{% endif %}" />
+									<input type="submit" class="btn btn-default btn-md" id="btn-default" name="teams" value="{% if team %}{{ team.Draws }} {{ team.Draw }}{% endif %}" />
+									<input type="submit" class="btn btn-default btn-md size-small" name="teams" value="{% if team %}{{ team.Bteams }} {{ team.B_odds }}{% endif %}" id="btn-default" />
+								</form>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="tab-pane fade" id="multibet">
+				<p>Send amount to deposit to 0712337254.</p>
+				<p>Minimum payable amount is Ksh 100</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="tab-pane fade" id="deposit">
+				<p>Send amount to deposit to 0712337254.</p>
+				<p>Minimum payable amount is Ksh 100</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal class -->
+<div class="modal fade" role="dialog" aria-hidden="true" id="modal-class">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close float-right" data-dismiss="modal">x</button>
+				<h3 class="modal-title">Sign in here</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" action="{% url 'bet_index' %}" method="POST">
+					{% csrf_token %}
+					{{ form.non_field_errors }}
+					<div class="form-group">
+						<label for="modal-user" class="control-label col-md-2">Username:</label>
+						<div class="col-md-10">
+							<input type="text" name="username" class="form-control" id="modal-user">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="modal-pwd" class="control-label col-md-2">Password:</label>
+						<div class="col-md-10">
+							<input type="password" name="password" class="form-control" id="modal-pwd">
+						</div>
+					</div>
+					<div class="col-md-offset-2">
+						<button type="submit" class="btn btn-primary btn-md">Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="placements">
+	
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+	$(document).on('submit', '#form-ajax',function(e)
+	{
+		e.preventDefault();
+
+		var value = '';
+		var selector = $("form input[name=teams]");
+		function obj()
+		{
+			selector.click(function () {
+				$(this).data('clicked', true)
+				
+				// $(this).each(function () {
+					
+				if ($(this).data('clicked')) {
+					value = $(this).val();
+					return $.ajax({
+						type : 'POST',
+						url : '/place/',
+						data : {
+							team : value,
+							csrfmiddlewaretoken : $('form input[name=csrfmiddlewaretoken]').val(),
+
+						},
+						success : function(){
+							console.log('Bet placed Successfully!!');
+						}
+					});
+				}
+				// });
+			});
+		};
+		obj();
+
+	});
+</script>
+{% endblock %}

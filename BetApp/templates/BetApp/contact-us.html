@@ -1,0 +1,68 @@
+{% extends 'BetApp/base.html' %}
+
+{% block title %} Contact us {% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+	<div class="row">
+		<div class="margin-top-100">
+			<div class="col-md-3">
+				<div class="panel-fixed" id="remove-panel-fixed">
+					<div class="page-header"><span class="glyphicon glyphicon-question-sign"><b class="h2"> Contact info</b></span></div>
+					<address>
+						<span class="h4">P.O Box 324564-00100,<br>Multimedia University of Kenya.<br>Nairobi, Kenya.</span>
+					</address>
+					<div class="remove-default">
+						<span class="h4"><a href="#"><span class="glyphicon glyphicon-envelope"> Email us</span></a></span><br>
+		        		<span class="h4"><a href="#"><span class="glyphicon glyphicon-comment"> Leave a Comment</span></a></span><br>
+						<span class="h4"><a href="#"><span class="glyphicon glyphicon-map-marker"> Find us</span></a></span><br>
+						<span class="h4"><a href="#"><span class="glyphicon glyphicon-phone"> Call us:254705451516</span></a></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="margin-top-100">
+			<div class="col-md-9">
+				<div class="page-header" id="gallery">
+					<h2><span class="glyphicon glyphicon-comment"> Send us text.<small>Reach us.</small></span></h2>
+				</div>
+					<form class="form-horizontal" method="POST" action="{% url 'bet_contact' %}" role="form">
+						{% csrf_token %}
+						{{ form.non_field_errors }}
+						<div class="form-group">
+							{{ form.email.errors }}
+							<label for="{{ form.email.id_for_label }}" class="control-label col-md-2">{{ form.email.label }} </label>
+							<div class="col-md-5">
+								{{ form.email }}
+							</div>
+							<label for="{{ form.location.id_for_label }}" class="control-label col-md-1" id="padding-top">{{form.location.label}} </label>
+							<div class="col-md-4">
+								{{ form.location }}
+							</div>
+						</div>
+						<div class="form-group">
+							{{ form.brief_description.errors }}
+							<label for="{{ form.brief_description.id_for_label }}" class="control-label col-md-2">{{form.brief_description.label}} </label>
+							<div class="col-md-10">
+								{{ form.brief_description }}
+							</div>
+						</div>
+						<div class="form-group">
+							{{ form.full_description.errors }}
+							<label for="{{ form.full_description.id_for_label }}" class="control-label col-md-2">{{form.full_description.label}} </label>
+							<div class="col-md-10">
+								{{ form.full_description }}
+							</div>
+						</div>
+						<div class="col-md-offset-2">
+							<button type="submit" class="btn btn-primary btn-block">Submit</button>
+						</div>
+					</form><br>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
