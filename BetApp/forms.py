@@ -2,7 +2,7 @@ from django import forms
 from django.db import models
 from django.contrib.auth.models import User
 
-from BetApp.models import Login_detail, Support
+from BetApp.models import Support, Login_detail
 
 class SigninForm(forms.ModelForm):
 	password2 = forms.CharField(
