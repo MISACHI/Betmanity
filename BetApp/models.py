@@ -10,7 +10,7 @@ class Login_detail(models.Model):
 
 class Team(models.Model):
 	team_id = models.AutoField(primary_key=True)
-	# customer_id = models.ForeignKey(Login_details, on_delete=models.CASCADE)
+	customer_id = models.ForeignKey(Login_details, on_delete=models.CASCADE)
 	Ateams = models.CharField(max_length=50)
 	A_odds = models.FloatField()
 	Draws = models.CharField(max_length=50)
